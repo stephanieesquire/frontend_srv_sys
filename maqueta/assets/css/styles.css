@@ -1,0 +1,160 @@
+body{
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    overflow: visible;
+  }
+
+.form-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: solid 1px #338634;
+    padding: 40px;
+    min-width: 30%;
+}
+
+.form-title{
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
+    font-family: monospace;
+    color: #338634;
+    font-size: 28px;
+}
+
+.logo{
+    max-width: 15%;
+}
+
+.nav-item{
+    margin-left: 50px;
+    padding: 10px;
+}
+
+.bg-light{
+    background-color: #eeeeef !important;
+}
+
+.btn-primary{
+    background-color: #338634;
+    border-color: #338634;
+    font-size: 14px;
+}
+
+.btn-primary:hover{
+    background-color: #074808;
+    border-color: #074808;
+}
+
+.btop{
+    border-top: solid 1px #a299998a;
+}
+
+.bbottom {
+    border-bottom: solid 1px #a299998a;
+}
+
+.bleft {
+    border-left: solid 1px #a299998a;
+}
+
+.bright {
+    border-right: solid 1px #a299998a;
+}
+
+.grid-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 40px;
+}
+
+.btn-encuesta{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.title-encuesta {
+    margin-bottom: 70px;
+}
+
+.div-page{
+    /* overflow-y: auto; */
+    clear: both;
+    position: fixed;
+    bottom: 0%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.page-item.active .page-link{
+    background-color: #338634;
+    border-color: #338634;
+}
+
+.page-item.active .page-link:hover{
+    background-color: #074808;
+    border-color: #074808;
+}
+
+.page-link{
+    color: #338634;
+}
+
+.row-title{
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+}
+
+.row{
+    text-align: center;
+    font-size: 12px;
+}
+
+.form-encuesta{
+    max-width: 50%;
+    margin-top: 20px;
+}
+
+.form-encuesta{
+    position: absolute;
+}
+
+.box-encuesta{
+    max-width: 50%;
+}
+
+a.col.bleft{
+    color: #338634;
+}
+
+.div-select-fecha{
+    display: inline-flex;
+}
+
+.control-select{
+    margin-right: 10px;
+}
+
+.add-icon{
+    height:30px;
+    width:30px;
+    margin-bottom: 20px;
+}
+
+.text-add{
+    font-size: 10px;
+}
