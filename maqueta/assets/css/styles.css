@@ -20,7 +20,7 @@ body{
 
 .form-title{
     position: fixed;
-    top: 15%;
+    top: 20%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%,-50%);
@@ -71,7 +71,7 @@ body{
 
 .grid-box{
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -85,7 +85,7 @@ body{
 }
 
 .title-encuesta {
-    margin-bottom: 70px;
+    margin-bottom: 160px;
 }
 
 .div-page{
@@ -157,4 +157,17 @@ a.col.bleft{
 
 .text-add{
     font-size: 10px;
+}
+
+.pagination{
+    margin-top: 350px !important;
+}
+
+.mencuesta-title{
+    font-family: monospace;
+    color: #338634;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
