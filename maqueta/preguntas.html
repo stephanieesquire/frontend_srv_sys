@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!--estilos-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+
+    <title>preguntas</title>
+  </head>
+  <body>
+    <div>
+      <!--menu-->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <div>
+                <img class="logo" src="./assets/images/logo.png" alt="logo" />
+              </div>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Encuestas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Resumen</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--titulo-->
+      <div class="container">
+        <div>
+          <div id="img-add-pregunta" class="btn-encuesta">
+            <a href="pregunta.html">
+              <img
+              src="./assets/images/add.svg"
+              alt="agregar_pregunta"
+              class="add-icon"
+              onclick="add('pregunta')"
+            />
+            </a>
+            
+            <span class="text-add">Agregar pregunta</span>
+          </div>
+          <h3 class="mencuesta-title">Administración de preguntas</h3>
+          <hr />
+          <div class="box-preguntas-current">
+            <div class="row visor-preguntas">
+              <div class="col title-visor">Encuesta</div>
+              <div class="col title-visor">Fecha de inicio</div>
+              <div class="col title-visor">Fecha de fin</div>
+              <div class="col title-visor">Estado</div>
+            </div>
+            <div class="row visor-preguntas">
+              <div class="col">Feedback clientes</div>
+              <div class="col">01/01/2021</div>
+              <div class="col">01/01/2025</div>
+              <div class="col">Activa</div>
+            </div>
+          </div>
+        <hr />
+      </div>
+      <!-- visor de preguntas -->
+      <hr>
+      <div class="box-preguntas-current">
+          <!-- datos respuesta -->
+        <div class="row visor-preguntas">
+          <div class="col title-visor">Texto pregunta</div>
+          <div class="col title-visor">Tipo de respuesta</div>
+          <div class="col title-visor">Orden</div>
+          <div class="col title-visor">Opciones respuesta</div>
+        </div>
+        <div class="row visor-preguntas">
+          <div class="col">¿Bla bla bla?</div>
+          <div class="col">Libre</div>
+          <div class="col">1</div>
+          <div class="col">N/A</div>
+        </div>
+        <div class="items">
+            <img class="add-icon-small" src="./assets/images/remove.png" alt="quitar">
+            <img class="add-icon-small" src="./assets/images/more.png" alt="mas">
+        </div>
+       <!-- datos respuesta -->
+       <div class="row visor-preguntas">
+        <div class="col title-visor">Texto pregunta</div>
+        <div class="col title-visor">Tipo de respuesta</div>
+        <div class="col title-visor">Orden</div>
+        <div class="col title-visor">Opciones respuesta</div>
+      </div>
+      <div class="row visor-preguntas">
+        <div class="col">¿Sarasa?</div>
+        <div class="col">Múltiple opción</div>
+        <div class="col">2</div>
+        <div class="col">
+            <ul class="col">
+                <li>Opción de respuesta 1</li>
+                <li>Opción de respuesta 2</li>
+                <li>Opción de respuesta 3</li>
+                <li>Opción de respuesta 4</li>
+                <li>Opción de respuesta 5</li>
+            </ul>
+        </div>
+      </div>
+      <div class="items">
+          <img class="add-icon-small" src="./assets/images/remove.png" alt="quitar">
+          <img class="add-icon-small" src="./assets/images/more.png" alt="mas">
+      </div>
+      </div>
+      <hr>
+    </div>
+  </body>
+</html>

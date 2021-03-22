@@ -39,8 +39,9 @@
       </nav>
       <!--titulo-->
       <div class="container">
-        <div class="">
-          <h3 class="mencuesta-title">MANTENIMIENTO DE ENCUESTA</h3>
+        <div>
+          <h3 class="mencuesta-title">Nueva encuesta</h3> 
+          <!-- dependiendo el modo, mostrar h3 nueva/modificar -->
         </div>
         <div class="container box-encuesta">
           <!-- formulario -->
@@ -121,148 +122,10 @@
                 </select>
               </div>
             </div>
-            <div id="img-add-pregunta">
-              <img
-              src="./assets/images/add.svg"
-              alt="agregar_pregunta"
-              class="add-icon"
-              onclick="add('pregunta')"
-            />
-            <span class="text-add">Agregar pregunta</span>
-            </div> 
-            <!--pregunta-->
-            <div id="div-pregunta" class="div-pregunta">
-              <hr>
-              <span style="font-weight: bold;">Pregunta n° 1</span>
-              <div class="form-group">
-                <label>Texto</label>
-                <textarea
-                  class="form-control"
-                  rows="3"
-                ></textarea>
-                
-              </div>
-              <div class="form-group">
-                <label>Tipo de respuesta</label>
-                <select
-                    class="form-control control-select"
-                    id="tipo-respuesta"
-                    onchange="mostrarTextRespuestas()"
-                  >
-                    <option value="L">Libre</option>
-                    <option value="MO">Múltiple opción</option>
-                  </select>
-              </div>
-              <!-- <img
-              src="./assets/images/remove.svg"
-              alt="quitar_pregunta"
-              class="add-icon"
-              onclick="remove()"
-            />
-            <span class="text-add">Quitar pregunta</span>
-            <br> -->
-            <div id="guardar_pregunta">
-              <img
-              src="./assets/images/check.svg"
-              alt="guardar_pregunta"
-              class="add-icon"
-              onclick="savePregunta()"
-            />
-            <span class="text-add">Guardar pregunta</span>
-            <br>
-            </div>
-            </div>
-            <!--respuesta-->
-            <div id="div-respuesta" class="div-respuesta">
-              <div class="form-group">
-                <label>Texto de respuesta esperada</label>
-                <input
-                  class="form-control"
-                />
-              </div>
-              <img
-                src="./assets/images/check.svg"
-                alt="agregar_respuesta"
-                id="agregar_respuesta"
-                class="add-icon"
-                onclick="saveRespuesta()"
-              />
-              <span class="text-add">Guardar respuesta</span> 
-            </div>
-            <div id="add-respuesta">
-              <img
-                src="./assets/images/add.svg"
-                alt="agregar_respuesta"
-                id="agregar_respuesta"
-                class="add-icon"
-                onclick="mostrarTextRespuestas()"
-              />
-              <span class="text-add">Agregar respuesta</span> 
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 50px;" onclick="confirmarEncuesta()">Confirmar encuesta</button> 
+            <a class="btn btn-primary" style="margin-top: 10px; margin-bottom: 50px;" href="preguntas.html" onclick="confirmarEncuesta()">Confirmar</a>
           </form>
         </div>
       </div>
   </body>
 </html>
 
-<!-- un poco de onda -->
-<script>
-  document.getElementById("div-pregunta").style.display = "none";
-  document.getElementById("div-respuesta").style.display = "none";
-  document.getElementById("add-respuesta").style.display = "none";
-
-  function add(valor) {
-    if (valor="div-pregunta") {
-      document.getElementById("div-pregunta").style.display = "initial";
-      document.getElementById("img-add-pregunta").style.display = "none";
-    }
-  }
-
-  function confirmarEncuesta() {
-    alert("¿Realmente desea confirmar la encuesta?")
-  }
-
-  function mostrarTextRespuestas(){
-    var combo = document.getElementById("tipo-respuesta");
-    var tipo_seleccionado = combo.options[combo.selectedIndex].value;
-    document.getElementById("guardar_pregunta").style.display = "none";
-
-    if (tipo_seleccionado =='MO') {
-      document.getElementById("div-respuesta").style.display = "initial";
-      document.getElementById("add-respuesta").style.display = "none";
-    }
-
-    if (tipo_seleccionado == 'L') {
-      document.getElementById("div-respuesta").style.display = "none";
-      document.getElementById("guardar_pregunta").style.display = "initial";
-    }
-  }
-
-  function saveRespuesta() {
-    document.getElementById("div-respuesta").style.display = "none";
-    document.getElementById("add-respuesta").style.display = "initial";
-    document.getElementById("guardar_pregunta").style.display = "initial";
-  }
-
-  function savePregunta() {
-    document.getElementById("div-respuesta").style.display = "none";
-    document.getElementById("add-respuesta").style.display = "none";
-    document.getElementById("div-pregunta").style.display = "none";
-    document.getElementById("img-add-pregunta").style.display = "initial";
-
-    var contador = sessionStorage.getItem("contador");
-    Number.parseInt(contador);
-    contador ++;
-    sessionStorage.setItem("contador", contador.toString());
-    alert("Total de preguntas: "+contador);
-  }
-
-  // function remove() {
-  //     document.getElementById("div-pregunta").style.display = "none";
-  //     document.getElementById("img-add-pregunta").style.display = "initial";
-  //     document.getElementById("div-respuesta").style.display = "none";
-  //     document.getElementById("add-respuesta").style.display = "none";
-  // }
-</script>
