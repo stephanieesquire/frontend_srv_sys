@@ -25,10 +25,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <div>
-                <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                <a href="index.html">
+                  <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                </a>
+                
               </div>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Encuestas</a>
+                <a class="nav-link" aria-current="page" href="principal.html">Encuestas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Resumen</a>
@@ -43,12 +46,12 @@
           <h3 class="mencuesta-title">Nueva encuesta</h3> 
           <!-- dependiendo el modo, mostrar h3 nueva/modificar -->
         </div>
-        <div class="container box-encuesta">
+        <div class="container box-encuesta div-pregunta">
           <!-- formulario -->
           <form action="">
             <div class="form-group">
               <label>Nombre</label>
-              <input
+              <input id="nombre"
                 class="form-control"
               />
             </div>
@@ -57,6 +60,7 @@
               <br />
               <div class="div-select-fecha">
                 <select
+                id="dia-inicio"
                   class="form-control control-select"
                 >
                   <option>1</option>
@@ -67,16 +71,18 @@
                 </select>
                 <br />
                 <select
+                  id="mes-inicio"
                   class="form-control control-select"
                 >
-                  <option>Enero</option>
-                  <option>Febrero</option>
-                  <option>Marzo</option>
-                  <option>Abril</option>
-                  <option>Mayo</option>
+                  <option value="0">Enero</option>
+                  <option value="1">Febrero</option>
+                  <option value="2">Marzo</option>
+                  <option value="3">Abril</option>
+                  <option value="4">Mayo</option>
                 </select>
                 <br />
                 <select
+                  id="anio-inicio"
                   class="form-control control-select"
                 >
                   <option>2021</option>
@@ -92,6 +98,7 @@
               <br />
               <div class="div-select-fecha">
                 <select
+                  id="dia-fin"
                   class="form-control control-select"
                 >
                   <option>1</option>
@@ -102,16 +109,18 @@
                 </select>
                 <br />
                 <select
+                  id="mes-fin"
                   class="form-control control-select"
                 >
-                  <option>Enero</option>
-                  <option>Febrero</option>
-                  <option>Marzo</option>
-                  <option>Abril</option>
-                  <option>Mayo</option>
+                  <option value="0">Enero</option>
+                  <option value="1">Febrero</option>
+                  <option value="2">Marzo</option>
+                  <option value="3">Abril</option>
+                  <option value="4">Mayo</option>
                 </select>
                 <br />
                 <select
+                  id="anio-fin"
                   class="form-control control-select"
                 >
                   <option>2021</option>
@@ -123,9 +132,34 @@
               </div>
             </div>
             <a class="btn btn-primary" style="margin-top: 10px; margin-bottom: 50px;" href="preguntas.html" onclick="confirmarEncuesta()">Confirmar</a>
+            <!-- <a class="btn btn-primary" style="margin-top: 10px; margin-bottom: 50px;" onclick="confirmarEncuesta()">Confirmar</a> -->
           </form>
         </div>
       </div>
   </body>
 </html>
 
+<script>
+  localStorage.clear();
+  
+  function confirmarEncuesta() {
+    var nombre       = document.getElementById("nombre").value;
+    var dia_inicio   = document.getElementById("dia-inicio").value;
+    var mes_inicio   = document.getElementById("mes-inicio").value;
+    var anio_inicio  = document.getElementById("anio-inicio").value;
+    var fecha_inicio = new Date(anio_inicio,mes_inicio,dia_inicio,0,0,0)
+    var dia_fin      = document.getElementById("dia-fin").value;
+    var mes_fin      = document.getElementById("mes-fin").value;
+    var anio_fin     = document.getElementById("anio-fin").value;
+    var fecha_fin    = new Date(anio_fin,mes_fin,dia_fin,0,0,0);
+
+    var encuesta   = {
+                       nombre: nombre, 
+                       inicio: fecha_inicio, 
+                       fin: fecha_fin
+     };
+
+    //guardo item en memoria
+    localStorage.setItem("encuesta",JSON.stringify(encuesta));
+  }
+</script>

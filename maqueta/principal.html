@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="./assets/css/styles.css" />
 
-    <title>encuesta</title>
+    <title>principal</title>
   </head>
   <body>
     <div>
@@ -25,10 +25,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <div>
-                <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                <a href="index.html">
+                  <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                </a>
               </div>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Encuestas</a>
+                <a class="nav-link" aria-current="page" href="principal.html">Encuestas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Resumen</a>
@@ -37,26 +39,22 @@
           </div>
         </div>
       </nav>
-      <!--titulo-->
-      <div class="container">
- 
+      <!--grid-->
+      <div class="container grid-box">
+        <div>
           <div id="img-add-pregunta" class="btn-encuesta">
-            <a href="pregunta.html">
+            <a href="encuesta.html">
               <img
               src="./assets/images/add.svg"
-              alt="agregar_pregunta"
+              alt="agregar_encuesta"
               class="add-icon"
             />
             </a>
             
-            <span class="text-add">Agregar pregunta</span>
+            <span class="text-add">Agregar encuesta</span>
+            
           </div>
-          <h3 class="mencuesta-title">Histórico de encuestas</h3>
-   
-      <!--grid-->
-      <div class="container grid-box">
-        <div class="title-encuesta">
-        </div>
+        <h3 class="mencuesta-title">Histórico de encuestas</h3>
         <div class="row btop row-title">
           <div class="col bleft">NOMBRE</div>
           <div class="col">INICIO</div>
@@ -82,7 +80,9 @@
           <div class="col bright">Pausada</div>
         </div>
         <div class="row btop">
-          <a class="col bleft" href="encuesta.html">Aprobación instalaciones</a>
+          <a class="col bleft" href="encuesta.html"
+            >Aprobación instalaciones</a
+          >
           <div class="col">01/01/2018</div>
           <div class="col">Indefinido</div>
           <div class="col bright">Activa</div>
@@ -106,13 +106,17 @@
           <div class="col bright">Pausada</div>
         </div>
         <div class="row btop">
-          <a class="col bleft" href="encuesta.html">Aprobación instalaciones</a>
+          <a class="col bleft" href="encuesta.html"
+            >Aprobación instalaciones</a
+          >
           <div class="col">01/01/2018</div>
           <div class="col">Indefinido</div>
           <div class="col bright">Activa</div>
         </div>
         <div class="row btop">
-          <a class="col bleft" href="encuesta.html">Aprobación instalaciones</a>
+          <a class="col bleft" href="encuesta.html"
+            >Aprobación instalaciones</a
+          >
           <div class="col">01/01/2018</div>
           <div class="col">Indefinido</div>
           <div class="col bright">Activa</div>
@@ -123,6 +127,7 @@
           <div class="col">01/01/2021</div>
           <div class="col bright">Finalizada</div>
         </div>
+      </div>
       </div>
       <!--paginado-->
       <div class="div-page">
@@ -144,7 +149,6 @@
           </ul>
         </nav>
       </div>
-      </div>
-    </div>
   </body>
 </html>
+

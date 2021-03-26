@@ -25,10 +25,14 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <div>
-                <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                <a href="index.html">
+                  <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                </a>
               </div>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Encuestas</a>
+                <a class="nav-link" aria-current="page" href="principal.html"
+                  >Encuestas</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Resumen</a>
@@ -44,11 +48,15 @@
           <!-- dependiendo el modo, mostrar h3 nueva/modificar -->
         </div>
         <!--pregunta-->
-        <div class="container box-encuesta">
-          <div id="div-pregunta" class="div-pregunta">
+        <div class="container box-encuesta div-pregunta rounded">
+          <div id="div-pregunta">
             <div class="form-group">
               <label>Texto</label>
-              <textarea class="form-control" rows="3"></textarea>
+              <textarea
+                id="texto-pregunta"
+                class="form-control"
+                rows="3"
+              ></textarea>
             </div>
             <div class="form-group">
               <label>Tipo de respuesta</label>
@@ -63,6 +71,7 @@
             </div>
             <div id="guardar_pregunta">
               <a href="preguntas.html">
+                <!-- <a> -->
                 <img
                   src="./assets/images/check.svg"
                   alt="guardar_pregunta"
@@ -78,16 +87,18 @@
           <div id="div-respuesta" class="div-respuesta">
             <div class="form-group">
               <label>Texto de respuesta esperada</label>
-              <input class="form-control" />
+              <input id="texto-respuesta" class="form-control" />
             </div>
-            <img
-              src="./assets/images/check.svg"
-              alt="agregar_respuesta"
-              id="agregar_respuesta"
-              class="add-icon"
-              onclick="saveRespuesta()"
-            />
-            <span class="text-add">Guardar respuesta</span>
+            <div id="guardar-respuesta">
+              <img
+                src="./assets/images/check.svg"
+                alt="agregar_respuesta"
+                id="agregar_respuesta"
+                class="add-icon"
+                onclick="saveRespuesta()"
+              />
+              <span class="text-add">Guardar respuesta</span>
+            </div>
           </div>
           <div id="add-respuesta">
             <img
@@ -107,6 +118,10 @@
 
 <!-- un poco de onda -->
 <script>
+  //flag respuesta mo
+  var mo = "off";
+  sessionStorage.setItem("flagMo", mo);
+
   document.getElementById("div-respuesta").style.display = "none";
   document.getElementById("add-respuesta").style.display = "none";
 
@@ -127,21 +142,99 @@
   }
 
   function saveRespuesta() {
+    var flagMo = sessionStorage.getItem("flagMo");
+
+    if (flagMo == "off") {
+      mo = "on";
+      sessionStorage.setItem("flagMo", mo);
+
+      //obtengo id pregunta de la última pregunta guardada (es la anterior a la actual)
+      var id_pregunta = sessionStorage.getItem("id-pregunta");
+      Number.parseInt(id_pregunta);
+      id_pregunta++;
+      sessionStorage.setItem("id-pregunta", id_pregunta.toString());
+    }
+    else {
+      //obtengo id pregunta de la última pregunta guardada (ya se guardó para esta pregunta)
+      var id_pregunta = sessionStorage.getItem("id-pregunta");
+      Number.parseInt(id_pregunta);
+    }
+
     document.getElementById("div-respuesta").style.display = "none";
     document.getElementById("add-respuesta").style.display = "initial";
     document.getElementById("guardar_pregunta").style.display = "initial";
+    // document.getElementById("tipo-respuesta").value = "L";
+    document.getElementById("texto-pregunta").disabled = true;
+    document.getElementById("tipo-respuesta").disabled = true;   
+
+    //obtengo respuestas guardadas
+    var respuestas_memoria_str = localStorage.getItem("respuestas");
+    var respuestas_memoria = JSON.parse(respuestas_memoria_str);
+
+    if (respuestas_memoria === null) {
+      respuestas_memoria = [{}];
+    }
+
+    //nueva respuesta a guardar en memoria
+    var texto_respuesta = document.getElementById("texto-respuesta").value;
+
+    var respuesta = {
+      id_pregunta: Number.parseInt(id_pregunta),
+      texto_respuesta: texto_respuesta,
+    };
+
+    //agrego item a colección
+    respuestas_memoria.push(respuesta);
+
+    //guardo array en memoria
+    localStorage.setItem("respuestas", JSON.stringify(respuestas_memoria));
+
+    document.getElementById("texto-respuesta").value = "";
+
+    // //recupero de memoria el array
+    // var recupero = localStorage.getItem("respuestas");
+    // recupero = JSON.parse(recupero);
   }
 
   function savePregunta() {
-    document.getElementById("div-respuesta").style.display = "none";
-    document.getElementById("add-respuesta").style.display = "none";
-    document.getElementById("div-pregunta").style.display = "none";
-    document.getElementById("img-add-pregunta").style.display = "initial";
+    //obtengo id pregunta
+    var flagMo = sessionStorage.getItem("flagMo");
 
-    var contador = sessionStorage.getItem("contador");
-    Number.parseInt(contador);
-    contador++;
-    sessionStorage.setItem("contador", contador.toString());
-    alert("Total de preguntas: " + contador);
+    if (flagMo == "off") {
+      var id_pregunta = sessionStorage.getItem("id-pregunta");
+      Number.parseInt(id_pregunta);
+      id_pregunta++;
+      sessionStorage.setItem("id-pregunta", id_pregunta.toString());
+    }
+    else {
+      var id_pregunta = sessionStorage.getItem("id-pregunta");
+      Number.parseInt(id_pregunta);
+    }
+
+    //obtengo las preguntas guardadas en memoria
+    var preguntas_memoria_str = localStorage.getItem("preguntas");
+    var preguntas_memoria = JSON.parse(preguntas_memoria_str);
+
+    //si no existe array lo creo
+    if (preguntas_memoria === null) {
+      preguntas_memoria = [{}];
+    }
+
+    //valores de nueva pregunta
+    var texto_pregunta = document.getElementById("texto-pregunta").value;
+    var combo = document.getElementById("tipo-respuesta");
+    var tipo_respuesta = combo.options[combo.selectedIndex].value;
+
+    //armo objeto pregunta
+    var pregunta = {
+      id_pregunta: Number.parseInt(id_pregunta),
+      texto: texto_pregunta,
+      tipo_respuesta: tipo_respuesta,
+    };
+
+    //agregar pregunta actual a colección memoria
+    preguntas_memoria.push(pregunta);
+
+    localStorage.setItem("preguntas", JSON.stringify(preguntas_memoria));
   }
 </script>

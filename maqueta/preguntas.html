@@ -25,10 +25,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <div>
-                <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                <a href="index.html">
+                  <img class="logo" src="./assets/images/logo.png" alt="logo" />
+                </a>
               </div>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Encuestas</a>
+                <a class="nav-link" aria-current="page" href="principal.html">Encuestas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Resumen</a>
@@ -38,7 +40,7 @@
         </div>
       </nav>
       <!--titulo-->
-      <div class="container">
+      <div id="container" class="container">
         <div>
           <div id="img-add-pregunta" class="btn-encuesta">
             <a href="pregunta.html">
@@ -62,61 +64,181 @@
               <div class="col title-visor">Estado</div>
             </div>
             <div class="row visor-preguntas">
-              <div class="col">Feedback clientes</div>
-              <div class="col">01/01/2021</div>
-              <div class="col">01/01/2025</div>
-              <div class="col">Activa</div>
+              <div id="content-nombre" class="col"></div>
+              <div id="content-fecha-inicio" class="col"></div>
+              <div id="content-fecha-fin" class="col"></div>
+              <div id="content-estado" class="col"></div>
             </div>
           </div>
         <hr />
       </div>
       <!-- visor de preguntas -->
-      <hr>
-      <div class="box-preguntas-current">
-          <!-- datos respuesta -->
-        <div class="row visor-preguntas">
-          <div class="col title-visor">Texto pregunta</div>
-          <div class="col title-visor">Tipo de respuesta</div>
-          <div class="col title-visor">Orden</div>
-          <div class="col title-visor">Opciones respuesta</div>
-        </div>
-        <div class="row visor-preguntas">
-          <div class="col">¿Bla bla bla?</div>
-          <div class="col">Libre</div>
-          <div class="col">1</div>
-          <div class="col">N/A</div>
-        </div>
-        <div class="items">
-            <img class="add-icon-small" src="./assets/images/remove.png" alt="quitar">
-            <img class="add-icon-small" src="./assets/images/more.png" alt="mas">
-        </div>
-       <!-- datos respuesta -->
-       <div class="row visor-preguntas">
-        <div class="col title-visor">Texto pregunta</div>
-        <div class="col title-visor">Tipo de respuesta</div>
-        <div class="col title-visor">Orden</div>
-        <div class="col title-visor">Opciones respuesta</div>
-      </div>
-      <div class="row visor-preguntas">
-        <div class="col">¿Sarasa?</div>
-        <div class="col">Múltiple opción</div>
-        <div class="col">2</div>
-        <div class="col">
-            <ul class="col">
-                <li>Opción de respuesta 1</li>
-                <li>Opción de respuesta 2</li>
-                <li>Opción de respuesta 3</li>
-                <li>Opción de respuesta 4</li>
-                <li>Opción de respuesta 5</li>
+      <!-- <div id="block-pregunta">
+        <hr>
+        <div class="box-preguntas-current">
+          <div class="row visor-preguntas">
+            <div class="col title-visor">Texto pregunta</div>
+            <div class="col title-visor">Tipo de respuesta</div>
+            <div class="col title-visor">Orden</div>
+            <div class="col title-visor">Opciones respuesta</div>
+          </div>
+          <div class="row visor-preguntas">
+            <div id="texto-pregunta" class="col">¿Bla bla bla?</div>
+            <div id="tipo-respuesta" class="col">Libre</div>
+            <div class="col">1</div>
+            <div class="col">
+              <ul id="lista-opciones" class="col">
             </ul>
-        </div>
+            </div>
+          </div>
+          <div class="items">
+              <img class="add-icon-small" src="./assets/images/remove.png" alt="quitar">
+              <img class="add-icon-small" src="./assets/images/more.png" alt="mas">
+          </div>
+        <hr>
       </div>
-      <div class="items">
-          <img class="add-icon-small" src="./assets/images/remove.png" alt="quitar">
-          <img class="add-icon-small" src="./assets/images/more.png" alt="mas">
+      </div> -->
       </div>
-      </div>
-      <hr>
-    </div>
   </body>
 </html>
+
+<script>
+  //obtengo array con datos de la encuesta
+  var encuesta = localStorage.getItem("encuesta");
+  encuesta     = JSON.parse(encuesta);
+
+  //obtengo array con las preguntas
+  var preguntas = localStorage.getItem("preguntas");
+  preguntas = JSON.parse(preguntas);
+
+  if (preguntas === null) {
+      preguntas = [{}];
+    }
+
+  //obtengo array con las respuestas
+  var respuestas = localStorage.getItem("respuestas")
+  respuestas = JSON.parse(respuestas);
+
+  if (respuestas === null) {
+    respuestas = [{}];
+    }
+
+  console.log(encuesta);
+  console.log(preguntas);
+  console.log(respuestas);
+  
+  //fecha actual yyyy-mm-dd
+  const today = new Date().toISOString().slice(0, 10)
+  
+  //estado de la encuesta
+  if (encuesta["inicio"] <= today && encuesta["fin"] >= today) 
+      {
+         document.getElementById("content-estado").innerHTML = "Activa";
+   }
+   else {
+         document.getElementById("content-estado").innerHTML = "Inactiva";
+   }
+
+  //cargo datos en pantalla
+   document.getElementById("content-nombre").innerHTML = encuesta["nombre"];
+   document.getElementById("content-fecha-inicio").innerHTML = encuesta["inicio"].slice(0,10);
+   document.getElementById("content-fecha-fin").innerHTML = encuesta["fin"].slice(0,10);
+
+  //recorro array preguntas
+  for (let i = 1; i < preguntas.length; i++) {
+
+    //armo html dinámico
+    let block = document.createElement("div");
+    block.setAttribute("class","block-pregunta");
+
+    let container = document.getElementById("container");
+    container.appendChild(block);
+
+    let hro = document.createElement("hr");
+    block.appendChild(hro);
+
+    let box_preguntas_current = document.createElement("div");
+    box_preguntas_current.setAttribute("class","box-preguntas-current");
+    block.appendChild(box_preguntas_current);
+
+    let hrc = document.createElement("hr");
+    block.appendChild(hrc);
+
+    let row_visor_preguntas = document.createElement("div");
+    row_visor_preguntas.setAttribute("class","row visor-preguntas");
+    box_preguntas_current.appendChild(row_visor_preguntas);
+
+    let col_title_visor1 = document.createElement("div");
+    col_title_visor1.setAttribute("class", "col title-visor");
+    col_title_visor1.innerHTML = "Texto pregunta";
+    row_visor_preguntas.appendChild(col_title_visor1);
+
+    let col_title_visor2 = document.createElement("div");
+    col_title_visor2.setAttribute("class", "col title-visor");
+    col_title_visor2.innerHTML = "Tipo de respuesta";
+    row_visor_preguntas.appendChild(col_title_visor2);
+
+    let col_title_visor3 = document.createElement("div");
+    col_title_visor3.setAttribute("class", "col title-visor");
+    col_title_visor3.innerHTML = "Orden";
+    row_visor_preguntas.appendChild(col_title_visor3);
+
+    let col_title_visor4 = document.createElement("div");
+    col_title_visor4.setAttribute("class", "col title-visor");
+    col_title_visor4.innerHTML = "Opciones de respuesta";
+    row_visor_preguntas.appendChild(col_title_visor4);
+
+    let row_visor_preguntas2 = document.createElement("div");
+    row_visor_preguntas2.setAttribute("class","row visor-preguntas");
+    box_preguntas_current.appendChild(row_visor_preguntas2);
+    
+    let texto_pregunta = document.createElement("div");
+    texto_pregunta.setAttribute("class", "col");
+    texto_pregunta.innerHTML = preguntas[i]["texto"];
+    row_visor_preguntas2.appendChild(texto_pregunta);
+
+    let tipo_respuesta = document.createElement("div");
+    // tipo_respuesta.setAttribute("id", "tipo-respuesta");
+    tipo_respuesta.setAttribute("class", "col");
+    tipo_respuesta.innerHTML = preguntas[i]["tipo_respuesta"];
+    row_visor_preguntas2.appendChild(tipo_respuesta);
+
+    let orden = document.createElement("div");
+    orden.setAttribute("class", "col");
+    orden.innerHTML = i;
+    row_visor_preguntas2.appendChild(orden);
+
+    let opciones_respuesta = document.createElement("div");
+    // opciones_respuesta.setAttribute("id", "opciones-respuesta");
+    opciones_respuesta.setAttribute("class", "col");
+    row_visor_preguntas2.appendChild(opciones_respuesta);
+
+    // if (preguntas["tipo_respuesta"] = "L") {
+    //   document.getElementById("tipo-respuesta").innerHTML = "Libre";
+    //   document.getElementById("opciones-respuesta").innerHTML = "N/A";
+    // }
+    // else if (preguntas["tipo_respuesta"] = "MO") {
+    //   document.getElementById("tipo-respuesta").innerHTML = "Múltiple opción";
+    // }
+
+    var ul = document.createElement("ul");
+    ul.setAttribute("id","lista-opciones");
+    ul.setAttribute("class","col");
+    opciones_respuesta.appendChild(ul);
+
+    var id_pregunta = preguntas[i]["id_pregunta"];
+
+    //recorro array respuestas
+    for (let i = 1; i < respuestas.length; i++) {
+
+      if (respuestas[i]["id_pregunta"] == id_pregunta) {
+        let li = document.createElement("li");
+        let opcion_respuesta = "opcion-respuesta-" + i;
+        li.setAttribute("id",opcion_respuesta);
+        ul.appendChild(li);
+        li.innerHTML = respuestas[i]["texto_respuesta"];
+      }
+    }
+
+  }
+</script>

@@ -17,7 +17,7 @@ body{
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    border: solid 1px #338634;
+    border: solid 1px #a299998a;
     padding: 40px;
     min-width: 30%;
     margin-top: 30px;
@@ -30,7 +30,7 @@ body{
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%,-50%);
     font-family: monospace;
-    color: #338634;
+    color: #155724;
     font-size: 28px;
     margin-top: 30px;
 }
@@ -99,7 +99,6 @@ body{
 }
 
 .div-page{
-    /* overflow-y: auto; */
     clear: both;
     position: fixed;
     bottom: 0%;
@@ -120,7 +119,7 @@ body{
 }
 
 .page-link{
-    color: #338634;
+    color: #155724;
 }
 
 .row-title{
@@ -148,7 +147,7 @@ body{
 }
 
 a.col.bleft{
-    color: #338634;
+    color: #155724;
 }
 
 .div-select-fecha{
@@ -177,7 +176,7 @@ a.col.bleft{
 
 .mencuesta-title{
     font-family: monospace;
-    color: #338634;
+    color: #155724;
     font-size: 28px;
     text-align: center;
     margin-top: 30px;
@@ -200,4 +199,9 @@ a.col.bleft{
 
 .items { 
     text-align: right;
+}
+
+.div-pregunta{
+    border: solid 1px #a299998a;
+    padding: 30px;
 }
