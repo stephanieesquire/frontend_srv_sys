@@ -126,6 +126,7 @@ body{
     font-weight: bold;
     text-align: center;
     font-size: 12px;
+    background-color: rgb(51 134 52 / 45%);
 }
 
 .row{
@@ -204,4 +205,22 @@ a.col.bleft{
 .div-pregunta{
     border: solid 1px #a299998a;
     padding: 30px;
+}
+
+.respuesta-ingresada{
+    border:  solid 1px #a299998a;
+    padding: 4px;
+    margin-bottom: 5px;
+}
+
+.respuesta-ingresada-span{
+    margin-left: 10px;
+}
+
+footer{
+    height: 100px;
+}
+
+.row-color{
+    background-color: rgb(238 238 239);
 }

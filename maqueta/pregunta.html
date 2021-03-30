@@ -110,9 +110,20 @@
             />
             <span class="text-add">Agregar respuesta</span>
           </div>
+          <!-- visor respuestas agregadas -->
+          <div id="visor-respuestas">
+            <!-- <div class="respuesta-ingresada rounded"> -->
+              <!-- <span class="respuesta-ingresada-span"></span>  -->
+              <!-- <img id="remove-answer" class="remove-answer" src="./assets/images/remove.svg" alt="quitar" onclick="removeAnswer()"> -->
+            <!-- </div> -->
+          </div>
         </div>
       </div>
     </div>
+
+    <footer>
+      
+    </footer>
   </body>
 </html>
 
@@ -153,8 +164,7 @@
       Number.parseInt(id_pregunta);
       id_pregunta++;
       sessionStorage.setItem("id-pregunta", id_pregunta.toString());
-    }
-    else {
+    } else {
       //obtengo id pregunta de la última pregunta guardada (ya se guardó para esta pregunta)
       var id_pregunta = sessionStorage.getItem("id-pregunta");
       Number.parseInt(id_pregunta);
@@ -165,7 +175,7 @@
     document.getElementById("guardar_pregunta").style.display = "initial";
     // document.getElementById("tipo-respuesta").value = "L";
     document.getElementById("texto-pregunta").disabled = true;
-    document.getElementById("tipo-respuesta").disabled = true;   
+    document.getElementById("tipo-respuesta").disabled = true;
 
     //obtengo respuestas guardadas
     var respuestas_memoria_str = localStorage.getItem("respuestas");
@@ -191,9 +201,19 @@
 
     document.getElementById("texto-respuesta").value = "";
 
-    // //recupero de memoria el array
-    // var recupero = localStorage.getItem("respuestas");
-    // recupero = JSON.parse(recupero);
+    //armo div para despliegue (html dinámico)
+    let visor_respuestas = document.getElementById("visor-respuestas");
+    
+    let respuesta_ingresada_span = document.createElement("span");
+    respuesta_ingresada_span.innerHTML = respuesta["texto_respuesta"];
+    respuesta_ingresada_span.setAttribute("class","respuesta-ingresada-span");
+
+    let respuesta_ingresada = document.createElement("div");
+    respuesta_ingresada.setAttribute("class", "respuesta-ingresada rounded");
+
+    respuesta_ingresada.appendChild(respuesta_ingresada_span);
+    visor_respuestas.appendChild(respuesta_ingresada);
+
   }
 
   function savePregunta() {
@@ -205,8 +225,7 @@
       Number.parseInt(id_pregunta);
       id_pregunta++;
       sessionStorage.setItem("id-pregunta", id_pregunta.toString());
-    }
-    else {
+    } else {
       var id_pregunta = sessionStorage.getItem("id-pregunta");
       Number.parseInt(id_pregunta);
     }

@@ -200,7 +200,15 @@
     let tipo_respuesta = document.createElement("div");
     // tipo_respuesta.setAttribute("id", "tipo-respuesta");
     tipo_respuesta.setAttribute("class", "col");
-    tipo_respuesta.innerHTML = preguntas[i]["tipo_respuesta"];
+
+    if (preguntas[i]["tipo_respuesta"] == "L") {
+      tipo_respuesta.innerHTML = "Libre";
+    }
+
+    if (preguntas[i]["tipo_respuesta"] == "MO") {
+      tipo_respuesta.innerHTML = "Múltiple opción";
+    }
+
     row_visor_preguntas2.appendChild(tipo_respuesta);
 
     let orden = document.createElement("div");
